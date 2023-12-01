@@ -12,15 +12,13 @@ services:
      - ./:/var/www
      - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      efo_networks:
-        aliases:
-          - reverse_proxy_network
+      efo_networks
     command: [nginx-debug, '-g', 'daemon off;']
 
 #Docker Networks
 volumes:
   nginxdata:
-    - driver: local
+    driver: local
 networks:
   efo_networks:
     name: efo_networks
