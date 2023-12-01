@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+  # Nginx Service
+  reverse_proxy:
+    image: nginx:alpine
+    container_name: reverse_proxy
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8881:8881"
+    volumes:
+     - ./:/var/www
+     - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      efo_networks:
+        aliases:
+          - reverse_proxy_network
+    command: [nginx-debug, '-g', 'daemon off;']
+
+#Docker Networks
+volumes:
+  nginxdata:
+    - driver: local
+networks:
+  efo_networks:
+    name: efo_networks
+    external: true
