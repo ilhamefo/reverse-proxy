@@ -12,12 +12,15 @@ services:
      - ./:/var/www
      - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-     - efo_networks
+      efo_networks:
+        aliases:
+          - service_web
     command: [nginx-debug, '-g', 'daemon off;']
-
 #Docker Networks
 volumes:
-  nginxdata:
+  dbdata:
+    driver: local
+  pgdata:
     driver: local
 networks:
   efo_networks:
