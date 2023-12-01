@@ -12,7 +12,7 @@ services:
      - ./:/var/www
      - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      efo_networks
+     - efo_networks
     command: [nginx-debug, '-g', 'daemon off;']
 
 #Docker Networks
